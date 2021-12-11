@@ -109,6 +109,6 @@ RAM_USED=$(grep -oP '^MemFree: *\K[0-9]+' /proc/meminfo)
 RAM=$(echo $RAM_USED  $RAM_TOTAL | awk '{usage = (($2 - $1) / $2) * 100} END {print int(usage + 0.5)"%"}')
 
 # Calculate the load [Good indicator of network usage]
-LOAD=$(echo $UPTIME | awk 'END { print $10"%" }')
+LOAD=$(echo $UPTIME | awk 'END { print $10 }' | tr -d ,)
 
 echo -e "\033[0;36mtime\033[0m: $TIME | \033[0;36mcpu\033[0m: $CPU | \033[0;36mram\033[0m: $RAM | \033[0;36mload\033[0m: $LOAD"
