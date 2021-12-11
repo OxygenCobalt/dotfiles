@@ -21,4 +21,4 @@ exist as a backup, but hopefully I'll make it into something more cohesive.
 - [redshift](https://github.com/jonls/redshift) [Optional]
 - A `.face` image file in the home directory [used by neofetch]
 - [Inconsolata](https://github.com/googlefonts/Inconsolata)
-- [Flat Remix Blue Darkest Solid NoBorder](https://github.com/daniruiz/flat-remix-gtk)
+- Included GTK theme from [Flat Remix](https://github.com/daniruiz/flat-remix-gtk)
