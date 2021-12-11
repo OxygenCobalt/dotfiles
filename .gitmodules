@@ -1,0 +1,6 @@
+[submodule "flat-remix"]
+	path = flat-remix
+	url = https://github.com/daniruiz/flat-remix.git
+[submodule "Inconsolata"]
+	path = Inconsolata
+	url = https://github.com/googlefonts/Inconsolata.git
