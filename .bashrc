@@ -25,6 +25,9 @@ alias ls="exa"                             # Exa is better
 alias more="less"                          # Less is better
 alias rename="imv"                         # Rename is a joke
 
+EDITOR="micro"
+VISUAL="micro"
+
 # Extract an archive
 # Usage: ex [ARCHIVE]
 ex ()
@@ -56,23 +59,27 @@ pkgclean() {
 	sudo pacman -R $(pacman -Qdtq)
 }
 
-# Begin our splash
+CLR_A="\033[0;34m" # Blue
+CLR_B="\033[0;36m" # Cyan
+NC="\033[0m"       # No color
+
+# Begin our splash 
 SPLASH="
-                                                                                \033[0;34mWW\033[0m                  
-             \033[0;36mWOxkOOOOOOOOOOOkx0W\033[0m                                      \033[0;34mWNX00OOOOOOOOOOOO0XW\033[0m          
-             \033[0;36mW0oxKXXXXXXXXXKxo0w\033[0m                                  \033[0;34mWK0OOOOO0KXNWWWWWWNX0OOOk0XW\033[0m      
-               \033[0;36mKxkW       NkxX\033[0m                                \033[0;34mWKOkOO0KN                  WXOkk0N\033[0m    
-                \033[0;36mXxkN     NxxX\033[0m                             \033[0;34mWX0OkO0XW                         WXkxON\033[0m  
-                 \033[0;36mNkxX   XxkN\033[0m                           \033[0;34mWKOkkOXW                                XOx0N\033[0m
-\033[0;34mW\033[0m                 \033[0;36mWOxKWKdOW\033[0m                         \033[0;34mN0OkO0NW                                     Xkx\033[0m
-\033[0;34mk0W\033[0m                \033[0;36mW0ddd0W\033[0m                     \033[0;34mWX0OkkOKW                   \033[0;36mW0d0W\033[0m                  \033[0;34mWX\033[0m
-\033[0;34mKkxKW\033[0m               \033[0;36mWKxKW\033[0m                   \033[0;34mWKOkkO0XW                     \033[0;36mWOdkdOW\033[0m                   
- \033[0;34mWKkkKW                                 WN0Okk0XW\033[0m                        \033[0;36mNkxX XxkN\033[0m                  
-   \033[0;34mWKkkOXW                           NKOkkOKN\033[0m                           \033[0;36mXxkN   NxxX\033[0m                 
-     \033[0;34mWXOkkOXW                   WX0OOOO0NW\033[0m                             \033[0;36mKdkN     NkxX\033[0m                
-        \033[0;34mWX0OOOO0KXNWWWWWWNXK0OOOOOOKNW\033[0m                               \033[0;36mW0dOW       WOd0W\033[0m              
-            \033[0;34mWXK0OOOOOOOOOOOOO0XNW\033[0m                                   \033[0;36mWOld0KKKKKKKKK0dlOW\033[0m             
-                     \033[0;34mWW\033[0m                                             \033[0;36mW0kOOOOOOOOOOOOOk0W\033[0m             
+                                                                                ${CLR_A}WW${NC}                  
+             ${CLR_B}WOxkOOOOOOOOOOOkx0W${NC}                                      ${CLR_A}WNX00OOOOOOOOOOOO0XW${NC}          
+             ${CLR_B}W0oxKXXXXXXXXXKxo0w${NC}                                  ${CLR_A}WK0OOOOO0KXNWWWWWWNX0OOOk0XW${NC}      
+               ${CLR_B}KxkW       NkxX${NC}                                ${CLR_A}WKOkOO0KN                  WXOkk0N${NC}    
+                ${CLR_B}XxkN     NxxX${NC}                             ${CLR_A}WX0OkO0XW                         WXkxON${NC}  
+                 ${CLR_B}NkxX   XxkN${NC}                           ${CLR_A}WKOkkOXW                                XOx0N${NC}
+${CLR_A}W${NC}                 ${CLR_B}WOxKWKdOW${NC}                         ${CLR_A}N0OkO0NW                                     Xkx${NC}
+${CLR_A}k0W${NC}                ${CLR_B}W0ddd0W${NC}                     ${CLR_A}WX0OkkOKW                   ${CLR_B}W0d0W${NC}                  ${CLR_A}WX${NC}
+${CLR_A}KkxKW${NC}               ${CLR_B}WKxKW${NC}                   ${CLR_A}WKOkkO0XW                     ${CLR_B}WOdkdOW${NC}                   
+ ${CLR_A}WKkkKW                                 WN0Okk0XW${NC}                        ${CLR_B}NkxX XxkN${NC}                  
+   ${CLR_A}WKkkOXW                           NKOkkOKN${NC}                           ${CLR_B}XxkN   NxxX${NC}                 
+     ${CLR_A}WXOkkOXW                   WX0OOOO0NW${NC}                             ${CLR_B}KdkN     NkxX${NC}                
+        ${CLR_A}WX0OOOO0KXNWWWWWWNXK0OOOOOOKNW${NC}                               ${CLR_B}W0dOW       WOd0W${NC}              
+            ${CLR_A}WXK0OOOOOOOOOOOOO0XNW${NC}                                   ${CLR_B}WOld0KKKKKKKKK0dlOW${NC}             
+                     ${CLR_A}WW${NC}                                             ${CLR_B}W0kOOOOOOOOOOOOOk0W${NC}             
 "
 
 echo -e "$SPLASH"
@@ -94,7 +101,7 @@ if (($HOUR >= 16)); then
 fi
 
 # Greet the user
-echo -e "$GREETING, \033[0;34m$(whoami)\033[0m"
+echo -e "$GREETING, ${CLR_A}$(whoami)${NC}"
 
 # Now get the current uptime and load. 
 UPTIME=$(uptime)
@@ -111,4 +118,4 @@ RAM=$(echo $RAM_USED  $RAM_TOTAL | awk '{usage = (($2 - $1) / $2) * 100} END {pr
 # Calculate the load [Good indicator of network usage]
 LOAD=$(echo $UPTIME | awk 'END { print $10 }' | tr -d ,)
 
-echo -e "\033[0;36mtime\033[0m: $TIME | \033[0;36mcpu\033[0m: $CPU | \033[0;36mram\033[0m: $RAM | \033[0;36mload\033[0m: $LOAD"
+echo -e "${CLR_B}time${NC}: $TIME | ${CLR_B}cpu${NC}: $CPU | ${CLR_B}ram${NC}: $RAM | ${CLR_B}load${NC}: $LOAD"

@@ -1,0 +1,6 @@
+[terminal]
+vt = 1
+
+[default_session]
+command = "tuigreet --cmd startxfce4 --greeting 'Zugang auf berechtigte Individuen beschränkt sein.'"
+user = "greeter"
