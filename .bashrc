@@ -23,7 +23,8 @@ alias grep="rg"                            # Ripgrep is better
 alias cat="bat"                            # Bat is better
 alias ls="exa"                             # Exa is better
 alias more="less"                          # Less is better
-alias rename="imv"                         # Rename is a joke
+alias rename="imv"                         # Unix rename is a joke
+alias youtube-dl="yt-dlp"                  # yt-dlp is maintained
 
 EDITOR="micro"
 VISUAL="micro"
@@ -72,14 +73,14 @@ SPLASH="
                 ${CLR_B}XxkN     NxxX${NC}                             ${CLR_A}WX0OkO0XW                         WXkxON${NC}  
                  ${CLR_B}NkxX   XxkN${NC}                           ${CLR_A}WKOkkOXW                                XOx0N${NC}
 ${CLR_A}W${NC}                 ${CLR_B}WOxKWKdOW${NC}                         ${CLR_A}N0OkO0NW                                     Xkx${NC}
-${CLR_A}k0W${NC}                ${CLR_B}W0ddd0W${NC}                     ${CLR_A}WX0OkkOKW                   ${CLR_B}W0d0W${NC}                  ${CLR_A}WX${NC}
-${CLR_A}KkxKW${NC}               ${CLR_B}WKxKW${NC}                   ${CLR_A}WKOkkO0XW                     ${CLR_B}WOdkdOW${NC}                   
- ${CLR_A}WKkkKW                                 WN0Okk0XW${NC}                        ${CLR_B}NkxX XxkN${NC}                  
-   ${CLR_A}WKkkOXW                           NKOkkOKN${NC}                           ${CLR_B}XxkN   NxxX${NC}                 
-     ${CLR_A}WXOkkOXW                   WX0OOOO0NW${NC}                             ${CLR_B}KdkN     NkxX${NC}                
-        ${CLR_A}WX0OOOO0KXNWWWWWWNXK0OOOOOOKNW${NC}                               ${CLR_B}W0dOW       WOd0W${NC}              
-            ${CLR_A}WXK0OOOOOOOOOOOOO0XNW${NC}                                   ${CLR_B}WOld0KKKKKKKKK0dlOW${NC}             
-                     ${CLR_A}WW${NC}                                             ${CLR_B}W0kOOOOOOOOOOOOOk0W${NC}             
+${CLR_A}k0W${NC}                ${CLR_B}W0ddd0W${NC}                     ${CLR_A}WX0OkkOKW                      ${CLR_B}W0d0W${NC}               ${CLR_A}WX${NC}
+${CLR_A}KkxKW${NC}               ${CLR_B}WKxKW${NC}                   ${CLR_A}WKOkkO0XW                        ${CLR_B}WOdkdOW${NC}                   
+ ${CLR_A}WKkkKW                                 WN0Okk0XW${NC}                           ${CLR_B}NkxX XxkN${NC}               
+   ${CLR_A}WKkkOXW                           NKOkkOKN${NC}                              ${CLR_B}XxkN   NxxX${NC}              
+     ${CLR_A}WXOkkOXW                   WX0OOOO0NW${NC}                                ${CLR_B}KdkN     NkxX${NC}             
+        ${CLR_A}WX0OOOO0KXNWWWWWWNXK0OOOOOOKNW${NC}                                  ${CLR_B}W0dOW       WOd0W${NC}           
+            ${CLR_A}WXK0OOOOOOOOOOOOO0XNW${NC}                                      ${CLR_B}WOld0KKKKKKKKK0dlOW${NC}          
+                     ${CLR_A}WW${NC}                                                ${CLR_B}W0kOOOOOOOOOOOOOk0W${NC}          
 "
 
 echo -e "$SPLASH"
