@@ -11,6 +11,8 @@ else
 	PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
 fi
 
+export QT_QPA_PLATFORMTHEME=qt5ct
+
 xhost +local:root > /dev/null 2>&1
 
 shopt -s checkwinsize # make sure bash responds to window sizes in all cases
