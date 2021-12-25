@@ -11,14 +11,9 @@ exist as a backup, but hopefully I'll make it into something more cohesive.
 
 #### Reccomended:
 
-- [kitty](https://github.com/kovidgoyal/kitty)
-- [bat](https://github.com/sharkdp/bat)
-- [exa](https://github.com/ogham/exa)
-- [renameutils](https://www.nongnu.org/renameutils)
-- [ripgrep](https://github.com/BurntSushi/ripgrep)
-- [micro](https://github.com/zyedidia/micro)
-- [sublime text](https://www.sublimetext.com)
-- [redshift](https://github.com/jonls/redshift) [Optional]
-- A `.face` image file in the home directory [used by neofetch]
-- [Inconsolata](https://github.com/googlefonts/Inconsolata)
-- Included GTK theme from [Flat Remix](https://github.com/daniruiz/flat-remix-gtk)
+*Warning: Incomplete list, will create a full list as soon as I have to make another install*
+
+`kitty`, `bat`, `exa`, `renameutils`, `ripgrep`, `micro`, `sublime text`, `redshift`,
+`inconsolata`, `flat remix [included]`, `awesome`, `pamixer`, `acpi`, `lightdm`,
+`light-locker`, `lightdm-mini-greeter [built manually]`, `dex`, `xclip`, `playerctl`,
+`lxtask`, `qt5ct`, 

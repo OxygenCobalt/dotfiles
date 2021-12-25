@@ -96,7 +96,18 @@ local function new(args)
 	    end
 	)
 
-	return ret
+	return {
+		widget = ret,
+		up = function()
+			mutate_update(ret, args.up_cmd)
+		end,
+		down = function()
+			mutate_update(ret, args.down_cmd)
+		end,
+		toggle = function()
+			mutate_update(ret, args.toggle_cmd)
+		end
+	}
 end
 
 return new

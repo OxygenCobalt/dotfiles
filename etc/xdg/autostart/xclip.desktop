@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=XClip
+Comment=Clipboard manager
+Exec=xclip
+Terminal=false
+Type=Application
+NoDisplay=true

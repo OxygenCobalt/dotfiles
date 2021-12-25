@@ -1,6 +1,6 @@
 # quark
 
-`quark` is my highly opinionated widget library for awesome that I created mostly for my use.
+`quark` is my highly opinionated widget library for awesomewm that I created mostly for my use.
 It prioritizes a flexible implementation and consistency at the cost of customization. 
 
 ## How to use
@@ -126,6 +126,11 @@ It should return a table with the following values. These should be `nil` if the
 - `down_cmd` represents the command ran when the widget is scrolled down. This is commonly used to increment/decrement audio.
 - `toggle_cmd` represents the command ran when the widget is right clicked. This is commonly used to toggle muting.
 - `open` represents the program to open when the widget is clicked.
+- This function returns a table with the following:
+    - `widget` is a volume widget that can be added to a layout
+    - `up` is a function that will run the `up_cmd` command and update the widget accordingly
+    - `down` is a function that will run the `down_cmd` command and update the widget accordingly
+    - `toggle` is a function that will run the `toggle_cmd` command and update the widget accordingly
 
 #### `quark.exit`
 
@@ -134,7 +139,7 @@ This is very similar to the vanilla awesome widget, but with the key difference 
 doesn't bug out and create glitchy graphics on the rest of the `wibar`.
 
 ```lua
-local myexit, myexitmenu = quark.exit {
+local myexit = quark.exit {
     on_lock = function() awful.spawn("mydm --lock") end,
     on_logout = function() awesome.quit() end,
     on_suspend = function() awful.spawn("systemctl suspend") end,
@@ -145,4 +150,6 @@ local myexit, myexitmenu = quark.exit {
 
 - `on_lock`, `on_logout`, `on_suspend`, `on_reboot`, and `on_shutdown` are called when
 their respective option is selected.
-- When called, it will return a button that opens the exit menu and the menu itself
+- This function returns a table with the following:
+    - `widget` is a button that will open the menu when clicked
+    - `menu` is the menu itself that can be toggled by a keybinding or similar.

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Redshift
+Comment=Remove blue light from the screen
+Exec=redshift
+Terminal=false
+Type=Application
+NoDisplay=true

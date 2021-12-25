@@ -9,7 +9,7 @@ local chrome_path = home .. "/.config/awesome/chrome/"
 local themes_path = gears.filesystem.get_themes_dir()
 
 -- inherit default theme
-local theme = dofile(themes_path.."default/theme.lua")
+local theme = dofile(themes_path .. "default/theme.lua")
 
 theme.font          = "Inconsolata 12"
 

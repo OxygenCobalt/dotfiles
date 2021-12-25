@@ -83,8 +83,8 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- {{{ Wibar
-local myexit, myexitmenu = quark.exit {
-    on_lock = function() end,
+local myexit = quark.exit {
+    on_lock = function() awful.spawn("light-locker-command -l") end,
     on_logout = function() awesome.quit() end,
     on_suspend = function() awful.spawn("systemctl suspend") end,
     on_reboot = function() awful.spawn("reboot") end,
@@ -319,7 +319,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         {
-            myexit,
+            myexit.widget,
             left = dpi(16),
             right = dpi(16),
             widget = wibox.container.margin
@@ -334,7 +334,7 @@ awful.screen.connect_for_each_screen(function(s)
             { -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
                 spacing = dpi(8),
-                mypulse,
+                mypulse.widget,
                 mycpu,
                 mymem,
                 mynet,
@@ -363,7 +363,7 @@ globalkeys = gears.table.join(
         function () awful.client.focus.byidx( 1) end,
         {description = "focus next by index", group = "client"}),
 
-    awful.key({ modkey,           }, "w", function () myexitmenu:show() end,
+    awful.key({ modkey,           }, "w", function () myexit.menu:show() end,
               {description = "show exit prompt", group = "awesome"}),
 
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx( -1)    end,
@@ -394,7 +394,34 @@ globalkeys = gears.table.join(
               {description = "quit awesome", group = "awesome"}),
 
     awful.key({ modkey }, "r", function() menubar.show() end,
-              {description = "show run menu", group = "launcher"})
+              {description = "show run menu", group = "launcher"}),
+
+   -- Volume Keys
+   awful.key({}, "XF86AudioRaiseVolume", function ()
+            mypulse.up()
+        end),
+
+    awful.key({}, "XF86AudioLowerVolume", 
+        function()
+            mypulse.down()
+        end),
+
+   awful.key({}, "XF86AudioMute", function ()
+            mypulse.toggle()
+        end),
+
+   -- Media Keys
+   awful.key({}, "XF86AudioPlay", function()
+            awful.util.spawn("playerctl play-pause", false)
+        end),
+
+   awful.key({}, "XF86AudioNext", function()
+            awful.util.spawn("playerctl next", false)
+        end),
+
+   awful.key({}, "XF86AudioPrev", function()
+            awful.util.spawn("playerctl previous", false) 
+        end)
 )
 
 clientkeys = gears.table.join(

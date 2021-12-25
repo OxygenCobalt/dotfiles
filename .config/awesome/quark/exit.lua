@@ -36,7 +36,10 @@ local function new(args)
         end
     )
 
-	return ret, menu
+	return {
+        widget = ret,
+        menu = menu
+    }
 end
 
 return new
