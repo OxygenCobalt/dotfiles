@@ -1,42 +1,38 @@
 local awful = require("awful")
-local beautiful = require("beautiful")
 local wibox = require("wibox")
 local gears = require("gears")
+local beautiful = require("beautiful")
+local dpi = beautiful.xresources.apply_dpi
 
 local function new(args)
 	local ret = wibox.widget {
 		{
 			{
-		        {
-		        	id = "vol_icon",
-		        	image = args.icons .. "audio-volume-high-symbolic.svg",
-	                resize = true,
-	                widget = wibox.widget.imagebox,
-	                valign = "center"
-		        },
-		        margins = 0,
-		        layout = wibox.container.margin  
+		       	id = "vol_icon",
+	        	image = beautiful.quark_volume_muted_icon,
+                resize = true,
+                widget = wibox.widget.imagebox,
+                valign = "center"
 		    },
 		    {
 			    {
 			    	id = "vol_bar",
-			    	forced_height = 1,
-			    	forced_width = 100,
-			    	color = beautiful.bar_good,
-			    	background_color = beautiful.bar_bg,
+			    	forced_width = dpi(100),
+			    	color = beautiful.quark_bar_good,
+			    	background_color = beautiful.quark_bar_bg,
 			    	widget = wibox.widget.progressbar,
 		            max_value = 100,
 		            shape = gears.shape.octogon
 			    },
-			    top = 6,
-			    bottom = 6,
+			    top = dpi(6),
+			    bottom = dpi(6),
 			    layout = wibox.container.margin
 			},
-		    spacing = 8,
+		    spacing = dpi(4),
 		    layout = wibox.layout.fixed.horizontal
 		},
-        top = 4,
-        bottom = 4,
+        top = dpi(4),
+        bottom = dpi(4),
         layout = wibox.container.margin		
     }
 
@@ -48,17 +44,22 @@ local function new(args)
 		bar:set_value(now["vol"])
 
 		if now["vol"] <= 0 or now["muted"] then
-			bar:set_color(beautiful.bar_poor)
-			icon.image = args.icons .. "audio-volume-muted-symbolic.svg"
+			bar:set_color(beautiful.quark_bar_poor)
+			icon.image = beautiful.quark_volume_muted_icon 
+		elseif now["vol"] > 100 then
+			-- Programs like pavucontrol allow the user to overamplify the volume.
+			-- Reflect that in the volume bar if that's the case.
+			bar:set_color(beautiful.quark_bar_critical)
+			icon.image = beautiful.quark_volume_overamp_icon
 		elseif now["vol"] > 70 then
-			bar:set_color(beautiful.bar_great)
-			icon.image = args.icons .. "audio-volume-high-symbolic.svg"
+			bar:set_color(beautiful.quark_bar_great)
+			icon.image = beautiful.quark_volume_high_icon
 		elseif now["vol"] > 30 then
-			bar:set_color(beautiful.bar_good)
-			icon.image = args.icons .. "audio-volume-medium-symbolic.svg"
+			bar:set_color(beautiful.quark_bar_good)
+			icon.image = beautiful.quark_volume_medium_icon
 		else
-			bar:set_color(beautiful.bar_okay)
-			icon.image = args.icons .. "audio-volume-low-symbolic.svg"
+			bar:set_color(beautiful.quark_bar_okay)
+			icon.image = beautiful.quark_volume_low_icon
 		end
     end
 

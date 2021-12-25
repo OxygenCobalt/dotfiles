@@ -1,6 +1,8 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local util = require("quark.util")
+local beautiful = require("beautiful")
+local dpi = beautiful.xresources.apply_dpi
 
 local function new(args)
 	local ret, t = awful.widget.watch(
@@ -39,11 +41,11 @@ local function new(args)
 	            util.percbar {
 	                id = "mem_prog"
 	            },
-	            spacing = 8,
+	            spacing = dpi(4),
 	            layout = wibox.layout.fixed.horizontal
 	        },
-	        top = 4,
-	        bottom = 4,
+	        top = dpi(4),
+	        bottom = dpi(4),
 	        layout = wibox.container.margin  
 	    }
 	)

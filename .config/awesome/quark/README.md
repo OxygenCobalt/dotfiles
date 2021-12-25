@@ -5,26 +5,41 @@ It prioritizes a flexible implementation and consistency at the cost of customiz
 
 ## How to use
 
-1. Add the following fields to your theme. These are used to color any progress bars used by the widget.
+1. Add the following fields to your theme. Some can be omitted if you are not using the specific widget.
 
 ```lua
-theme.bar_bg = "#XXXXXX"
-theme.bar_great = "#XXXXXX"
-theme.bar_good = "#XXXXXX"
-theme.bar_okay = "#XXXXXX"
-theme.bar_poor = "#XXXXXX"
-theme.bar_critical = "#XXXXXX"
+-- all widgets except exit
+theme.quark_bar_bg = "#404040"
+theme.quark_bar_great = "#00ccff"
+theme.quark_bar_good = "#0099cc"
+theme.quark_bar_okay = "#006699"
+theme.quark_bar_poor = "#6666cc"
+theme.quark_bar_critical = "#9999ff"
+
+-- exit widget
+theme.quark_exit_icon = chrome_path .. "application-exit-symbolic.svg"
+theme.quark_lock_icon = chrome_path .. "system-lock-screen-symbolic.svg"
+theme.quark_logout_icon = chrome_path .. "system-log-out-symbolic.svg"
+theme.quark_suspend_icon = chrome_path .. "system-suspend-symbolic.svg"
+theme.quark_reboot_icon = chrome_path .. "system-reboot-symbolic.svg"
+theme.quark_shutdown_icon = chrome_path .. "system-shutdown-symbolic.svg"
+
+-- pulse widget
+theme.quark_volume_overamp_icon = chrome_path .. "audio-volume-overamplified-symbolic.svg"
+theme.quark_volume_high_icon = chrome_path .. "audio-volume-high-symbolic.svg"
+theme.quark_volume_medium_icon = chrome_path .. "audio-volume-medium-symbolic.svg"
+theme.quark_volume_low_icon = chrome_path .. "audio-volume-low-symbolic.svg"
+theme.quark_volume_muted_icon = chrome_path .. "audio-volume-muted-symbolic.svg"
 ```
 
 2. Instantiate the component you want by calling `quark.[COMPONENT]`. **All arguments shown for
-the specific widget must be provided. If they are not, then unexpected behavior may occur.**
+the specific widget must be provided. If not, unexpected behavior may occur.**
 
 ## Components
 
 #### `quark.cpu` & `quark.mem`
 
 These two widgets show the used CPU and RAM percentages respectively.
-They are both instantiated with the following code:
 
 ```lua
 local mywidget = quark.(cpu/mem) {
@@ -32,13 +47,38 @@ local mywidget = quark.(cpu/mem) {
 }
 ```
 
+- `open` is the program to open when the meter is clicked.
+
 Internally, these widgets grep `/proc/stat` and `/proc/meminfo` for information, so their
 implementation cannot be customized.
+
+#### `quark.net`
+
+This widget shows upload/download load statistics.
+
+```lua
+local mynet = quark.net { 
+    device = "mywlan",
+    unit = {
+        name = "kb",
+        denom = 1024
+    },
+    up_max = 32,
+    down_max = 512
+}
+```
+
+- `device` is the device to monitor for usage.
+- `unit` is the units to display for network usage.
+	- `name` is the name of the unit, such as `kb`.
+	- `denom` is the denomination of this unit, such as `1024`
+- `up_max` is the minimum upload speed, in `unit`, that will result in a full bar in the widget.
+- `down_max` is the minimum download speed, in `unit`, that will result in a full bar in the widgets.
 
 #### `quark.pwr`
 
 This widget shows the remaining battery. When clicked, it will open a popup showing more information
-about the battery status. The widget is instantiated with the following code:
+about the battery status.
 
 ```lua
 local mypwr = quark.pwr {
@@ -60,8 +100,7 @@ It should return a table with the following values. These should be `nil` if the
 
 #### `quark.pulse`
 
-This widget shows a volume meter that can be controlled. This widget is instantiated with the following
-code:
+This widget shows a volume meter that can be controlled.
 
 ```lua
 local mypulse = quark.pulse {
@@ -74,8 +113,7 @@ local mypulse = quark.pulse {
     up_cmd = "myaudiocontrol -i",
     down_cmd = "myaudiocontrol -d",
     toggle_cmd = "myaudiocontrol -t",
-    open = "myaudiocontrol",
-    icons = "/usr/share/icons/path/to/symbolic/icons"
+    open = "myaudiocontrol"
 }
 ```
 
@@ -88,8 +126,23 @@ It should return a table with the following values. These should be `nil` if the
 - `down_cmd` represents the command ran when the widget is scrolled down. This is commonly used to increment/decrement audio.
 - `toggle_cmd` represents the command ran when the widget is right clicked. This is commonly used to toggle muting.
 - `open` represents the program to open when the widget is clicked.
-- `icons` represents the icon directory to use for volume icons. The widget expects the following icons:
-	- `audio-volume-high-symbolic.svg`
-	- `audio-volume-medium-symbolic.svg`
-	- `audio-volume-low-symbolic.svg`
-	- `audio-volume-muted-symbolic.svg`
+
+#### `quark.exit`
+
+This widget shows a menu containing lock, logout, suspend, reboot, and shutdown options.
+This is very similar to the vanilla awesome widget, but with the key difference that it
+doesn't bug out and create glitchy graphics on the rest of the `wibar`.
+
+```lua
+local myexit, myexitmenu = quark.exit {
+    on_lock = function() awful.spawn("mydm --lock") end,
+    on_logout = function() awesome.quit() end,
+    on_suspend = function() awful.spawn("systemctl suspend") end,
+    on_reboot = function() awful.spawn("reboot") end,
+    on_shutdown = function() awful.spawn("shutdown now") end
+}
+```
+
+- `on_lock`, `on_logout`, `on_suspend`, `on_reboot`, and `on_shutdown` are called when
+their respective option is selected.
+- When called, it will return a button that opens the exit menu and the menu itself
