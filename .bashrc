@@ -62,8 +62,8 @@ pkgclean() {
 	sudo pacman -R $(pacman -Qdtq)
 }
 
-CLR_A="\033[0;34m" # Blue
-CLR_B="\033[0;36m" # Cyan
+CLR_A="\033[0;95m" # Blue
+CLR_B="\033[0;94m" # Cyan
 NC="\033[0m"       # No color
 
 # Begin our splash 
