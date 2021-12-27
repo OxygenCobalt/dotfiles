@@ -1,0 +1,59 @@
+# Visiblue is a blue-oriented terminal color scheme that I shamelessly ripped from terminal.sexy.
+
+# --- COLORS ---
+
+# special
+foreground  = #FFFFFF
+background  = #000000
+cursorColor = #FFFFFF
+
+# black
+color0      = #333366
+color8      = #333399
+
+# red
+color1      = #6666cc
+color9      = #9999ff
+
+# green
+color2      = #0099cc
+color10     = #00ccff
+
+# yellow
+color3      = #3366cc
+color11     = #6699ff
+
+# blue
+color4      = #006699
+color12     = #0099cc
+
+# magenta
+color5      = #0066ff
+color13     = #0099ff
+
+# cyan
+color6      = #669999
+color14     = #66cccc
+
+# white
+color7      = #99cccc
+color15     = mi#ccffff
+
+# --- ROLES ---
+
+color0 - Ambient block/Selection
+color1 - Error [Major]
+color2 - Keyword/Definitions Modifier
+color3 - Ambient chrome
+color4 - Primary
+color5 - Not currently used
+color6 - Unimportant
+color7 - Slightly more important
+color8 - Ambient block/Selection [Border]
+color9 - Error [Minor], Modifier, Header, Deleted
+color10 - Meta [Superclass, this/self, annotations]
+color11 - Keywords and operators
+color12 - Constants
+color13 - Member variables
+color14 - Class/Function Definitions
+color15 - Arguments
