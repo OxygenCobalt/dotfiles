@@ -32,21 +32,16 @@ local function new(args)
 	        prog:set_color(util.perc_color(ram["perc"], false))
 	    end,
 	    wibox.widget {
-	        {
-	            {
-	                id = "mem_lbl",
-	                markup = "mem",
-	                widget = wibox.widget.textbox
-	            },
-	            util.percbar {
-	                id = "mem_prog"
-	            },
-	            spacing = dpi(4),
-	            layout = wibox.layout.fixed.horizontal
-	        },
-	        top = dpi(4),
-	        bottom = dpi(4),
-	        layout = wibox.container.margin  
+            {
+                id = "mem_lbl",
+                markup = "mem",
+                widget = wibox.widget.textbox
+            },
+            util.percbar {
+                id = "mem_prog"
+            },
+            spacing = dpi(4),
+            layout = wibox.layout.fixed.horizontal
 	    }
 	)
 

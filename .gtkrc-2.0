@@ -1,8 +1,7 @@
-[Settings]
-gtk-theme-name=Flat-Remix-GTK-Blue-Darkest-Solid-NoBorder
-gtk-icon-theme-name=Papirus-Dark
-gtk-font-name=Inconsolata 11
-gtk-cursor-theme-name=capitaine-cursors-light
+gtk-theme-name="Flat-Remix-GTK-Blue-Darkest-Solid-NoBorder"
+gtk-icon-theme-name="Papirus-Dark"
+gtk-font-name="Inconsolata 11"
+gtk-cursor-theme-name="capitaine-cursors-light"
 gtk-cursor-theme-size=0
 gtk-toolbar-style=GTK_TOOLBAR_BOTH
 gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
@@ -12,5 +11,4 @@ gtk-enable-event-sounds=1
 gtk-enable-input-feedback-sounds=1
 gtk-xft-antialias=1
 gtk-xft-hinting=1
-gtk-xft-hintstyle=hintfull
-gtk-application-prefer-dark-theme=true
+gtk-xft-hintstyle="hintfull"

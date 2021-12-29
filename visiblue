@@ -39,7 +39,7 @@ color14     = #66cccc
 color7      = #99cccc
 color15     = mi#ccffff
 
-# --- ROLES ---
+# --- SYNTAX ROLES ---
 
 color0 - Ambient block/Selection
 color1 - Error [Major]

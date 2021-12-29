@@ -74,28 +74,23 @@ local function new(args)
 	    	last.r = now.r
 	    end,
 	    wibox.widget {
-	        {
-	            {
-	                id = "net_lbl",
-	                markup = "net",
-	                widget = wibox.widget.textbox
+            {
+                id = "net_lbl",
+                markup = "net",
+                widget = wibox.widget.textbox
+            },
+            {
+	            util.percbar {
+	                id = "net_up"
 	            },
-	            {
-		            util.percbar {
-		                id = "net_up"
-		            },
-		            util.percbar {
-		            	id = "net_down"
-		            },
-		            spacing = dpi(2),
-		            layout = wibox.layout.fixed.horizontal
+	            util.percbar {
+	            	id = "net_down"
 	            },
-	            spacing = dpi(4),
+	            spacing = dpi(2),
 	            layout = wibox.layout.fixed.horizontal
-	        },
-	        top = dpi(4),
-	        bottom = dpi(4),
-	        layout = wibox.container.margin
+            },
+            spacing = dpi(4),
+            layout = wibox.layout.fixed.horizontal
 	    }
 	)
 

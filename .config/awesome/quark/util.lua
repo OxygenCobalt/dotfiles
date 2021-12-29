@@ -12,8 +12,6 @@ end
 local function percbar(args)
     local defs = {
         max_value = 100,
-        forced_width = dpi(8),
-        forced_height = dpi(8),
         color = beautiful.bg_focus,
         background_color = beautiful.quark_bar_bg,
         widget = wibox.widget.progressbar,
@@ -21,10 +19,15 @@ local function percbar(args)
     }
 
     return {
-        gears.table.join(defs, args),
-        forced_width = dpi(8),
-        direction = 'east',
-        layout = wibox.container.rotate,
+        {
+            gears.table.join(defs, args),
+            forced_width = dpi(8),
+            direction = 'east',
+            layout = wibox.container.rotate,
+        },
+        top = dpi(4),
+        bottom = dpi(4),
+        layout = wibox.container.margin
     }
 end
 

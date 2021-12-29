@@ -134,9 +134,7 @@ It should return a table with the following values. These should be `nil` if the
 
 #### `quark.exit`
 
-This widget shows a menu containing lock, logout, suspend, reboot, and shutdown options.
-This is very similar to the vanilla awesome widget, but with the key difference that it
-doesn't bug out and create glitchy graphics on the rest of the `wibar`.
+This function returns a menu containing lock, logout, suspend, reboot, and shutdown options.
 
 ```lua
 local myexit = quark.exit {
@@ -150,6 +148,3 @@ local myexit = quark.exit {
 
 - `on_lock`, `on_logout`, `on_suspend`, `on_reboot`, and `on_shutdown` are called when
 their respective option is selected.
-- This function returns a table with the following:
-    - `widget` is a button that will open the menu when clicked
-    - `menu` is the menu itself that can be toggled by a keybinding or similar.

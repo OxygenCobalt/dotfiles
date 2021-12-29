@@ -28,21 +28,16 @@ local function new(args)
 	        prog:set_color(util.perc_color(perc, false))
 	    end,
 	    wibox.widget {
-	        {
-	            {
-	                id = "cpu_lbl",
-	                markup = "cpu",
-	                widget = wibox.widget.textbox
-	            },
-	            util.percbar {
-	                id = "cpu_prog"
-	            },
-	            spacing = dpi(4),
-	            layout = wibox.layout.fixed.horizontal
-	        },
-	        top = dpi(4),
-	        bottom = dpi(4),
-	        layout = wibox.container.margin
+	    	{                
+	    		id = "cpu_lbl",
+                markup = "cpu",
+                widget = wibox.widget.textbox
+		    },
+            util.percbar {
+                id = "cpu_prog"
+            },
+            spacing = dpi(4),
+            layout = wibox.layout.fixed.horizontal
 	    }
 	)
 

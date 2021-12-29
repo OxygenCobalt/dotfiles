@@ -70,6 +70,7 @@ awful.spawn.with_shell(
 terminal = "kitty"
 editor = os.getenv("EDITOR") or "micro"
 editor_cmd = terminal .. " -e " .. editor
+filemgr_cmd = terminal .. " -e nnn"
 
 modkey = "Mod4"
 
@@ -84,7 +85,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- {{{ Wibar
-local myexit = quark.exit {
+local myexitmenu = quark.exit {
     on_lock = function() awful.spawn("light-locker-command -l") end,
     on_logout = function() awesome.quit() end,
     on_suspend = function() awful.spawn("systemctl suspend") end,
@@ -292,20 +293,23 @@ awful.screen.connect_for_each_screen(function(s)
             {
                 {
                     {
-                        id     = "icon_role",
-                        widget = wibox.widget.imagebox,
+                        {
+                            id     = "icon_role",
+                            widget = wibox.widget.imagebox,
+                        },
+                        top = dpi(4),
+                        bottom = dpi(4),
+                        widget = wibox.container.margin
                     },
                     {
                         id     = "text_role",
-                        widget = wibox.widget.textbox,
+                        widget = wibox.widget.textbox
                     },
                     layout = wibox.layout.fixed.horizontal,
                     spacing = dpi(4),
                 },
                 left = dpi(8),
                 right = dpi(8),
-                top = dpi(4),
-                bottom = dpi(4),
                 widget = wibox.container.margin
             },
             id     = "background_role",
@@ -319,16 +323,12 @@ awful.screen.connect_for_each_screen(function(s)
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
-        {
-            myexit.widget,
-            left = dpi(16),
-            right = dpi(16),
-            widget = wibox.container.margin
-        },        
+        wibox.widget.base.empty_widget(),  
         {
             {
                 widget = s.mytasklist
             },
+            left = dpi(8),
             widget = wibox.container.margin
         },
         {
@@ -344,7 +344,7 @@ awful.screen.connect_for_each_screen(function(s)
                 mytextclock
             },
             left = dpi(16),
-            right = dpi(16),
+            right = dpi(8),
             widget = wibox.container.margin
         }
     }
@@ -364,7 +364,7 @@ globalkeys = gears.table.join(
         function () awful.client.focus.byidx( 1) end,
         {description = "focus next by index", group = "client"}),
 
-    awful.key({ modkey,           }, "q", function () myexit.menu:show() end,
+    awful.key({ modkey,           }, "q", function () myexitmenu:show() end,
               {description = "show exit prompt", group = "awesome"}),
 
     awful.key({ modkey, "Shift"   }, "Left", function () awful.client.swap.byidx( -1)    end,
@@ -388,6 +388,9 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
 
+    awful.key({ modkey,           }, "/", function () awful.spawn(filemgr_cmd) end,
+              {description = "open file manager", group = "launcher"}),
+              
     awful.key({ modkey, "Shift" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
 

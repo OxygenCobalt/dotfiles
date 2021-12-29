@@ -11,7 +11,7 @@ local themes_path = gears.filesystem.get_themes_dir()
 -- inherit default theme
 local theme = dofile(themes_path .. "default/theme.lua")
 
-theme.font          = "Inconsolata 12"
+theme.font          = "Inconsolata 13"
 
 theme.bg_normal     = "#000000"
 theme.bg_focus      = "#006699"
