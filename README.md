@@ -7,9 +7,8 @@ exist as a backup, but hopefully I'll make it into something more cohesive.
 
 #### Goals:
 - Back up configs for certain programs
-- Keep track of Font/GTK configurations [See submodules]
-- Create a nice awesomewm theme [Eventually]
-- Create a cohesive color scheme based off of visiblue [Eventually]
+- Keep track of Font/GTK configurations
+- Create a nice awesomewm theme and color scheme based off of visiblue
 
 #### Setup:
 
