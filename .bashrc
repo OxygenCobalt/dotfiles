@@ -11,7 +11,8 @@ else
 	PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
 fi
 
-export QT_QPA_PLATFORMTHEME=qt5ct
+eval $(gnome-keyring-daemon --start --components=ssh)
+export SSH_AUTH_SOCK
 
 xhost +local:root > /dev/null 2>&1
 
@@ -24,6 +25,7 @@ alias df='df -h'                           # Human-readable sizes
 alias grep="rg"                            # Ripgrep is better
 alias cat="bat"                            # Bat is better
 alias ls="exa"                             # Exa is better
+alias sxiv="nsxiv"                         # Nsxiv is maintained
 alias more="less"                          # Less is better
 alias rename="imv"                         # Unix rename is a joke
 alias youtube-dl="yt-dlp"                  # yt-dlp is maintained

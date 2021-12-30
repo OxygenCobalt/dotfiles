@@ -24,6 +24,7 @@ local quark = require("quark")
 
 local os = os
 local io = io
+local config_path = os.getenv("HOME") .. "/.config/awesome/"
 local chrome_path = os.getenv("HOME") .. "/.config/awesome/chrome/"
 
 -- Enable hotkeys help widget for VIM and other apps
@@ -55,7 +56,7 @@ do
 end
 -- }}}
 
-beautiful.init("/home/oxycblt/.config/awesome/theme.lua")
+beautiful.init(config_path .. "theme.lua")
 
 -- Some XDG autostart files in this configuration will fail on startup,
 -- as they rely on an X server to function. This makes sure that these are ran.
@@ -74,7 +75,7 @@ filemgr_cmd = terminal .. " -e nnn"
 
 modkey = "Mod4"
 
--- Floating only, tiling WMs aren't my thinkg
+-- Floating only, tiling WMs aren't my thing
 awful.layout.layouts = {
     awful.layout.suit.floating
 }
@@ -549,7 +550,7 @@ client.connect_signal("request::titlebars", function(c)
     -- Screw tooltips, all my homies hate tooltips
     awful.titlebar.enable_tooltip = false
 
-    awful.titlebar(c) : setup {
+    awful.titlebar(c, { size = dpi(28) }) : setup {
         { -- Left
         	{
         		{

@@ -24,8 +24,8 @@ local function new(args)
 		            max_value = 100,
 		            shape = gears.shape.octogon
 			    },
-			    top = dpi(7),
-			    bottom = dpi(7),
+			    top = dpi(6),
+			    bottom = dpi(6),
 			    layout = wibox.container.margin
 			},
 		    spacing = dpi(4),

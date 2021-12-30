@@ -41,6 +41,8 @@ theme.menu_submenu_icon = chrome_path .. "submenu.svg"
 theme.menu_height = dpi(32)
 theme.menu_width  = dpi(256)
 
+theme.wibar_height = dpi(28)
+
 theme.titlebar_close_button_normal = titlebar_path.."normal.svg"
 theme.titlebar_close_button_focus  = titlebar_path.."close_focus.svg"
 theme.titlebar_close_button_focus_hover = titlebar_path.."close_hover.svg" 
