@@ -1,6 +1,6 @@
 <svg height="64mm" viewBox="0 0 64 64" width="64mm" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="32" cy="32" fill="#09f" r="24" stroke-width="1.63024"/>
-    <g fill="#06f">
+    <circle cx="32" cy="32" fill="#09f" r="22" stroke-width="1.49439"/>
+    <g fill="#06f" transform="matrix(.91666668 0 0 .91666668 2.666667 2.666667)">
         <path d="m30.999999 33h-13.999998l13.999998 13.999998z"/>
         <path d="m33 30.999999h13.999998l-13.999998-13.999998z"/>
     </g>

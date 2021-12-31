@@ -8,11 +8,9 @@ local function new(args)
 	local ret = wibox.widget {
 		{
 			{
-		       	id = "vol_icon",
-	        	image = beautiful.quark_volume_muted_icon,
-                resize = true,
-                widget = wibox.widget.imagebox,
-                valign = "center"
+	    		id = "cpu_lbl",
+                markup = "vol",
+                widget = wibox.widget.textbox
 		    },
 		    {
 			    {
@@ -38,28 +36,22 @@ local function new(args)
 
     local update = function(widget, stdout)
     	local now = args.get.parse(stdout)
-    	local icon = widget:get_children_by_id("vol_icon")[1]
     	local bar = widget:get_children_by_id("vol_bar")[1]
 
 		bar:set_value(now["vol"])
 
 		if now["vol"] <= 0 or now["muted"] then
 			bar:set_color(beautiful.quark_bar_poor)
-			icon.image = beautiful.quark_volume_muted_icon 
 		elseif now["vol"] > 100 then
 			-- Programs like pavucontrol allow the user to overamplify the volume.
 			-- Reflect that in the volume bar if that's the case.
 			bar:set_color(beautiful.quark_bar_critical)
-			icon.image = beautiful.quark_volume_overamp_icon
 		elseif now["vol"] > 70 then
 			bar:set_color(beautiful.quark_bar_great)
-			icon.image = beautiful.quark_volume_high_icon
 		elseif now["vol"] > 30 then
 			bar:set_color(beautiful.quark_bar_good)
-			icon.image = beautiful.quark_volume_medium_icon
 		else
 			bar:set_color(beautiful.quark_bar_okay)
-			icon.image = beautiful.quark_volume_low_icon
 		end
     end
 

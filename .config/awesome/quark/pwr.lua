@@ -37,20 +37,15 @@ local function new(args)
 	    end,
 	    wibox.widget {
 	        {
-	            {
-	                id = "lbl_prog",
-	                markup = "pwr",
-	                widget = wibox.widget.textbox
-	            },
-	            util.percbar {
-	                id = "pwr_prog"
-	            },
-	            spacing = dpi(4),
-	            layout = wibox.layout.fixed.horizontal
+	            id = "lbl_prog",
+	            markup = "pwr",
+	            widget = wibox.widget.textbox
 	        },
-	        top = dpi(4),
-	        bottom = dpi(4),
-	        layout = wibox.container.margin
+	        util.percbar {
+	            id = "pwr_prog"
+	        },
+	        spacing = dpi(4),
+	        layout = wibox.layout.fixed.horizontal
 	    }
 	)
 
