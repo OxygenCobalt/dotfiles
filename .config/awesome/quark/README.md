@@ -23,13 +23,6 @@ theme.quark_logout_icon = chrome_path .. "system-log-out-symbolic.svg"
 theme.quark_suspend_icon = chrome_path .. "system-suspend-symbolic.svg"
 theme.quark_reboot_icon = chrome_path .. "system-reboot-symbolic.svg"
 theme.quark_shutdown_icon = chrome_path .. "system-shutdown-symbolic.svg"
-
--- pulse widget
-theme.quark_volume_overamp_icon = chrome_path .. "audio-volume-overamplified-symbolic.svg"
-theme.quark_volume_high_icon = chrome_path .. "audio-volume-high-symbolic.svg"
-theme.quark_volume_medium_icon = chrome_path .. "audio-volume-medium-symbolic.svg"
-theme.quark_volume_low_icon = chrome_path .. "audio-volume-low-symbolic.svg"
-theme.quark_volume_muted_icon = chrome_path .. "audio-volume-muted-symbolic.svg"
 ```
 
 2. Instantiate the component you want by calling `quark.[COMPONENT]`. **All arguments shown for

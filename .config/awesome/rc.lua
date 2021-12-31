@@ -94,34 +94,6 @@ local myexitmenu = quark.exit {
     on_shutdown = function() awful.spawn("shutdown now") end
 }
 
-local mypulse = quark.pulse {
-    get = {
-        cmd = "pamixer --get-volume --get-mute",
-        parse = function(stdout)        
-            local i = 1
-            local pulse = {}
-
-            for w in string.gmatch(stdout, "%g+") do
-                if i == 1 then
-                    pulse["muted"] = w == "true"
-                elseif i == 2 then
-                    pulse["vol"] = tonumber(w)
-                else
-                    break
-                end
-
-                i = i + 1
-            end
-
-            return pulse
-        end
-    },
-    up_cmd = "pamixer -i 5",
-    down_cmd = "pamixer -d 5",
-    toggle_cmd = "pamixer --toggle-mute",
-    open = "pavucontrol"
-}
-
 local mycpu = quark.cpu { open = "lxtask" }
 local mymem = quark.mem { open = "lxtask" }
 
@@ -190,6 +162,34 @@ if has_battery then
         }
     }
 end
+
+local mypulse = quark.pulse {
+    get = {
+        cmd = "pamixer --get-volume --get-mute",
+        parse = function(stdout)        
+            local i = 1
+            local pulse = {}
+
+            for w in string.gmatch(stdout, "%g+") do
+                if i == 1 then
+                    pulse["muted"] = w == "true"
+                elseif i == 2 then
+                    pulse["vol"] = tonumber(w)
+                else
+                    break
+                end
+
+                i = i + 1
+            end
+
+            return pulse
+        end
+    },
+    up_cmd = "pamixer -i 5",
+    down_cmd = "pamixer -d 5",
+    toggle_cmd = "pamixer --toggle-mute",
+    open = "pavucontrol"
+}
 
 local mytextclock = wibox.widget.textclock("%H:%M")
 
@@ -329,22 +329,21 @@ awful.screen.connect_for_each_screen(function(s)
             {
                 widget = s.mytasklist
             },
-            left = dpi(8),
             widget = wibox.container.margin
         },
         {
             { -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
                 spacing = dpi(8),
-                mypulse.widget,
                 mycpu,
                 mymem,
                 mynet,
                 mypwr,
+                mypulse.widget,
                 wibox.widget.systray(),
                 mytextclock
             },
-            left = dpi(16),
+            left = dpi(8),
             right = dpi(8),
             widget = wibox.container.margin
         }
@@ -550,7 +549,7 @@ client.connect_signal("request::titlebars", function(c)
     -- Screw tooltips, all my homies hate tooltips
     awful.titlebar.enable_tooltip = false
 
-    awful.titlebar(c, { size = dpi(28) }) : setup {
+    awful.titlebar(c, { size = beautiful.titlebar_height }) : setup {
         { -- Left
         	{
         		{
@@ -570,15 +569,11 @@ client.connect_signal("request::titlebars", function(c)
             buttons = buttons,
             layout  = wibox.layout.flex.horizontal
         },
-        {
-            { -- Right
-                awful.titlebar.widget.minimizebutton(c),
-                awful.titlebar.widget.maximizedbutton(c),
-                awful.titlebar.widget.closebutton(c),
-                layout = wibox.layout.fixed.horizontal()
-            },
-            margins = dpi(0),
-            widget = wibox.container.margin
+        { -- Right
+            awful.titlebar.widget.minimizebutton(c),
+            awful.titlebar.widget.maximizedbutton(c),
+            awful.titlebar.widget.closebutton(c),
+            layout = wibox.layout.fixed.horizontal()
         },
         layout = wibox.layout.align.horizontal
     }

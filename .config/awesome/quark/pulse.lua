@@ -2,36 +2,21 @@ local awful = require("awful")
 local wibox = require("wibox")
 local gears = require("gears")
 local beautiful = require("beautiful")
+local util = require("quark.util")
 local dpi = beautiful.xresources.apply_dpi
 
 local function new(args)
 	local ret = wibox.widget {
 		{
-			{
-	    		id = "cpu_lbl",
-                markup = "vol",
-                widget = wibox.widget.textbox
-		    },
-		    {
-			    {
-			    	id = "vol_bar",
-			    	forced_width = dpi(100),
-			    	color = beautiful.quark_bar_good,
-			    	background_color = beautiful.quark_bar_bg,
-			    	widget = wibox.widget.progressbar,
-		            max_value = 100,
-		            shape = gears.shape.octogon
-			    },
-			    top = dpi(6),
-			    bottom = dpi(6),
-			    layout = wibox.container.margin
-			},
-		    spacing = dpi(4),
-		    layout = wibox.layout.fixed.horizontal
-		},
-        top = dpi(4),
-        bottom = dpi(4),
-        layout = wibox.container.margin		
+    		id = "vol_lbl",
+            markup = "vol",
+            widget = wibox.widget.textbox
+	    },
+        util.percbar {
+            id = "vol_bar"
+        },
+	    spacing = dpi(4),
+	    layout = wibox.layout.fixed.horizontal
     }
 
     local update = function(widget, stdout)

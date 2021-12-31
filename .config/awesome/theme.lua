@@ -42,6 +42,7 @@ theme.menu_height = dpi(32)
 theme.menu_width  = dpi(256)
 
 theme.wibar_height = dpi(28)
+theme.titlebar_height = dpi(28)
 
 theme.titlebar_close_button_normal = titlebar_path.."normal.svg"
 theme.titlebar_close_button_focus  = titlebar_path.."close_focus.svg"
@@ -80,11 +81,5 @@ theme.quark_logout_icon = chrome_path .. "system-log-out-symbolic.svg"
 theme.quark_suspend_icon = chrome_path .. "system-suspend-symbolic.svg"
 theme.quark_reboot_icon = chrome_path .. "system-reboot-symbolic.svg"
 theme.quark_shutdown_icon = chrome_path .. "system-shutdown-symbolic.svg"
-
-theme.quark_volume_overamp_icon = chrome_path .. "audio-volume-overamplified-symbolic.svg"
-theme.quark_volume_high_icon = chrome_path .. "audio-volume-high-symbolic.svg"
-theme.quark_volume_medium_icon = chrome_path .. "audio-volume-medium-symbolic.svg"
-theme.quark_volume_low_icon = chrome_path .. "audio-volume-low-symbolic.svg"
-theme.quark_volume_muted_icon = chrome_path .. "audio-volume-muted-symbolic.svg"
 
 return theme
