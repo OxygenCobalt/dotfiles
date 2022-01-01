@@ -4,15 +4,12 @@
 
 [[ $- != *i* ]] && return
 
-# Enable color. Pretty much every terminal has it now.
+# Enable prompt color.
 if [[ ${EUID} == 0 ]] ; then
 	PS1='\[\033[01;31m\][\h\[\033[01;36m\] \W\[\033[01;31m\]]\$\[\033[00m\] '
 else
 	PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
 fi
-
-eval $(gnome-keyring-daemon --start --components=ssh)
-export SSH_AUTH_SOCK
 
 xhost +local:root > /dev/null 2>&1
 

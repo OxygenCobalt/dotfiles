@@ -338,8 +338,8 @@ awful.screen.connect_for_each_screen(function(s)
                 mycpu,
                 mymem,
                 mynet,
-                mypwr,
                 mypulse.widget,
+                mypwr,
                 wibox.widget.systray(),
                 mytextclock
             },
