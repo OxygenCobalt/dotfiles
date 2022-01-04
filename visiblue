@@ -54,6 +54,6 @@ color9 - Error [Minor], Modifier, Header, Deleted
 color10 - Meta [Superclass, this/self, annotations]
 color11 - Keywords and operators
 color12 - Constants
-color13 - Member variables
-color14 - Class/Function Definitions
+color13 - Member variables, Changed
+color14 - Class/Function Definitions, Inserted
 color15 - Arguments
