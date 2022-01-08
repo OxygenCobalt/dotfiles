@@ -6,7 +6,7 @@ local dpi = beautiful.xresources.apply_dpi
 
 local function new(args)
 	local ret, t = awful.widget.watch(
-	    'bash -c "grep -oP \\"(^MemTotal: *\\K[0-9]+)|(^MemFree: *\\K[0-9]+)\\" /proc/meminfo | head -n 2"',
+	    'bash -c "grep -oP \\"(^MemTotal: *\\K[0-9]+)|(^MemAvailable: *\\K[0-9]+)\\" /proc/meminfo | head -n 2"',
 	    1,
 	    function(widget, stdout)
 	        local i = 1

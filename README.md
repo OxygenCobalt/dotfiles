@@ -3,7 +3,7 @@
 Miscellanious dotfiles I cobbled together with luck and stackoverflow. Currently these are mostly useless and only
 exist as a backup, but hopefully I'll make it into something more cohesive.
 
-<img src="screen.png" />
+[<img src="screen.png" />](screen.png)
 
 #### Goals:
 - Back up configs for certain programs

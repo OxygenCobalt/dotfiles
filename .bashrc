@@ -27,9 +27,6 @@ alias more="less"                          # Less is better
 alias rename="imv"                         # Unix rename is a joke
 alias youtube-dl="yt-dlp"                  # yt-dlp is maintained
 
-EDITOR="micro"
-VISUAL="micro"
-
 # Extract an archive
 # Usage: ex [ARCHIVE]
 ex ()
@@ -114,7 +111,7 @@ CPU=$(grep 'cpu ' /proc/stat | awk '{usage = ($2 + $4) * 100 / ($2 + $4 + $5); }
 
 # Calculate the RAM percentage
 RAM_TOTAL=$(grep -oP '^MemTotal: *\K[0-9]+' /proc/meminfo)
-RAM_USED=$(grep -oP '^MemFree: *\K[0-9]+' /proc/meminfo)
+RAM_USED=$(grep -oP '^MemAvailable: *\K[0-9]+' /proc/meminfo)
 RAM=$(echo $RAM_USED  $RAM_TOTAL | awk '{usage = (($2 - $1) / $2) * 100} END {print int(usage + 0.5)"%"}')
 
 # Calculate the load [Good indicator of network usage]
