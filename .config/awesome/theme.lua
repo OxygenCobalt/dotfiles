@@ -42,23 +42,24 @@ theme.menu_height = dpi(32)
 theme.menu_width  = dpi(256)
 
 theme.wibar_height = dpi(28)
-theme.titlebar_height = dpi(28)
+theme.wibar_ontop = true
 
+theme.notification_icon_size = dpi(40)
+theme.notification_border_color = "#404040"
+
+theme.titlebar_height = dpi(28)
 theme.titlebar_close_button_normal = titlebar_path.."normal.svg"
 theme.titlebar_close_button_focus  = titlebar_path.."close_focus.svg"
 theme.titlebar_close_button_focus_hover = titlebar_path.."close_hover.svg" 
 theme.titlebar_close_button_focus_press = titlebar_path.."close_press.svg" 
-
 theme.titlebar_maximized_button_normal_inactive = titlebar_path.."normal.svg"
 theme.titlebar_maximized_button_focus_inactive  = titlebar_path.."maximize_focus.svg"
 theme.titlebar_maximized_button_focus_inactive_hover = titlebar_path.."maximize_hover_inactive.svg"
 theme.titlebar_maximized_button_focus_inactive_press  = titlebar_path.."maximize_press_inactive.svg"
-
 theme.titlebar_maximized_button_normal_active = titlebar_path.."normal.svg"
 theme.titlebar_maximized_button_focus_active  = titlebar_path.."maximize_focus.svg"
 theme.titlebar_maximized_button_focus_active_hover = titlebar_path.."maximize_hover_active.svg"
 theme.titlebar_maximized_button_focus_active_press  = titlebar_path.."maximize_press_active.svg"
-
 theme.titlebar_minimize_button_normal = titlebar_path.."normal.svg"
 theme.titlebar_minimize_button_focus  = titlebar_path.."minimize_focus.svg"
 theme.titlebar_minimize_button_focus_hover  = titlebar_path.."minimize_hover.svg"

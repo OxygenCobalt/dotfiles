@@ -5,11 +5,4 @@
 #
 EDITOR=micro
 VISUAL=micro
-
-# Make QT programs play along with my nightmarish Kvantum + qt5ct config.
 QT_QPA_PLATFORMTHEME=qt5ct
-
-# Make NNN bearable to use
-GUI=1
-NNN_OPENER=nuke
-NNN_OPTS="c"

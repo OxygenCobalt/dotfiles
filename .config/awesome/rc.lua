@@ -70,8 +70,9 @@ awful.spawn.with_shell(
 
 terminal = "kitty"
 editor = os.getenv("EDITOR") or "micro"
+filemgr = "ranger"
 editor_cmd = terminal .. " -e " .. editor
-filemgr_cmd = terminal .. " -e nnn"
+filemgr_cmd = terminal .. " -e " .. filemgr
 
 modkey = "Mod4"
 
@@ -174,7 +175,7 @@ local mypulse = quark.pulse {
                 if i == 1 then
                     pulse["muted"] = w == "true"
                 elseif i == 2 then
-                    pulse["vol"] = tonumber(w)
+                    pulse["vol"] = tonumber(w or "0")
                 else
                     break
                 end
@@ -192,57 +193,13 @@ local mypulse = quark.pulse {
 }
 
 local mytextclock = wibox.widget.textclock("%H:%M")
-
-local window_menu = nil
 local tasklist_buttons = gears.table.join(
     awful.button({ }, 1, function (c)
-        if c == client.focus then
-            c.minimized = true
-        else
-            c:emit_signal(
-                "request::activate",
-                "tasklist",
-                {raise = true}
-            )
-        end
-    end),
-    awful.button({ }, 3, function(c)
-        -- Custom menu function that implements the good parts of XFCE's menu
-		local minimize_lbl = "minimize"
-		local maximize_lbl = "maximize"
-        local ontop_lbl = "keep on top"
-			
-		if c.minimized then
-			minimize_lbl = "unminimize"
-		end
-
-		if c.maximized then
-			maximize_lbl = "unmaximize"
-		end
-
-        if c.ontop then
-            ontop_lbl = "remove from top"
-        end
-
-        -- Ensure that two menus cannot exist at the same time
-        if type(window_menu) == "nil" then 
-            window_menu = awful.menu({ items = { 
-                { minimize_lbl, function() c.minimized = not c.minimized end },
-                { maximize_lbl, function() c.maximized = not c.maximized end },
-                { ontop_lbl, function() c.ontop = not c.ontop end },
-                { "close", function() c:kill() end },
-            }})
-        else
-            window_menu:hide()
-            window_menu = awful.menu({ items = { 
-                { minimize_lbl, function() c.minimized = not c.minimized end },
-                { maximize_lbl, function() c.maximized = not c.maximized end },
-                { ontop_lbl, function() c.ontop = not c.ontop end },
-                { "close", function() c:kill() end },
-            }})
-        end
-
-        window_menu:show()
+        c:emit_signal(
+            "request::activate",
+            "tasklist",
+            {raise = true}
+        )
     end),
     awful.button({ }, 4, function ()
         awful.client.focus.byidx(1)
@@ -397,6 +354,16 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "r", function() menubar.show() end,
               {description = "show run menu", group = "launcher"}),
 
+    awful.key({ modkey, "Shift" }, "n",
+              function ()
+                  local c = awful.client.restore()
+
+                  if not type(c) == "nil" then
+                    c:activate { raise = true, context = "key.unminimize" }
+                  end
+              end,
+              {description = "restore minimized", group = "client"}),
+
    -- Volume Keys
    awful.key({}, "XF86AudioRaiseVolume", function ()
             mypulse.up()
@@ -421,7 +388,7 @@ globalkeys = gears.table.join(
         end),
 
    awful.key({}, "XF86AudioPrev", function()
-            awful.util.spawn("playerctl previous", false) 
+            awful.util.spawn("playerctl previous", false)
         end)
 )
 
@@ -433,7 +400,7 @@ clientkeys = gears.table.join(
         end,
         {description = "toggle fullscreen", group = "client"}),
 
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
+    awful.key({ modkey,           }, "x",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
 
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
@@ -445,7 +412,13 @@ clientkeys = gears.table.join(
             -- minimized, since minimized clients can't have the focus.
             c.minimized = true
         end ,
-        {description = "minimize", group = "client"})
+        {description = "minimize", group = "client"}),
+
+    awful.key({ modkey,           }, "m",
+        function (c)
+            c.maximized = not c.maximized
+        end ,
+        {description = "(un)maximize", group = "client"})
 )
 
 clientbuttons = gears.table.join(
@@ -509,6 +482,12 @@ awful.rules.rules = {
           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
       }, properties = { floating = true }},
+
+    { rule_any = {
+        instance = {
+            "win0"
+        }
+    }, properties = { titlebars_enabled = false }},
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
