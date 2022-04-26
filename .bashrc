@@ -58,6 +58,15 @@ pkgclean() {
 	sudo pacman -R $(pacman -Qdtq)
 }
 
+launch() {
+    if [ -f $0 ] ; then
+	  $1&
+	  disown
+	else
+	  echo "usage: launch [cmd]"
+	fi
+}
+
 CLR_A="\033[0;95m" # Blue
 CLR_B="\033[0;94m" # Cyan
 NC="\033[0m"       # No color
